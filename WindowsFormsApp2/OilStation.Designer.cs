@@ -62,11 +62,13 @@
             this.oilcomboBox.BackColor = System.Drawing.Color.Red;
             this.oilcomboBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.oilcomboBox.FormattingEnabled = true;
-            this.oilcomboBox.Location = new System.Drawing.Point(225, 427);
+            this.oilcomboBox.Location = new System.Drawing.Point(225, 408);
             this.oilcomboBox.Name = "oilcomboBox";
             this.oilcomboBox.Size = new System.Drawing.Size(121, 21);
             this.oilcomboBox.TabIndex = 1;
             this.oilcomboBox.SelectedIndexChanged += new System.EventHandler(this.oilcomboBox_SelectedIndexChanged);
+            this.oilcomboBox.TextUpdate += new System.EventHandler(this.oilcomboBox_TextUpdate);
+            this.oilcomboBox.TextChanged += new System.EventHandler(this.oilcomboBox_TextChanged);
             // 
             // label2
             // 
@@ -74,7 +76,7 @@
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label2.Font = new System.Drawing.Font("Papyrus", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(116, 419);
+            this.label2.Location = new System.Drawing.Point(116, 408);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 32);
             this.label2.TabIndex = 2;
@@ -86,7 +88,7 @@
             this.priceLbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.priceLbl.Font = new System.Drawing.Font("Papyrus", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.priceLbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.priceLbl.Location = new System.Drawing.Point(116, 473);
+            this.priceLbl.Location = new System.Drawing.Point(116, 461);
             this.priceLbl.Name = "priceLbl";
             this.priceLbl.Size = new System.Drawing.Size(72, 32);
             this.priceLbl.TabIndex = 2;
@@ -95,7 +97,7 @@
             // priceLblBox
             // 
             this.priceLblBox.BackColor = System.Drawing.Color.White;
-            this.priceLblBox.Location = new System.Drawing.Point(222, 473);
+            this.priceLblBox.Location = new System.Drawing.Point(222, 461);
             this.priceLblBox.Name = "priceLblBox";
             this.priceLblBox.Size = new System.Drawing.Size(124, 20);
             this.priceLblBox.TabIndex = 3;
@@ -111,7 +113,7 @@
             this.quantityBtn.TabStop = true;
             this.quantityBtn.Text = "Quantity";
             this.quantityBtn.UseVisualStyleBackColor = true;
-            this.quantityBtn.TextChanged += new System.EventHandler(this.quantityBtn_TextChanged);
+            this.quantityBtn.CheckedChanged += new System.EventHandler(this.quantityBtn_CheckedChanged);
             // 
             // quantumBtn
             // 
@@ -124,22 +126,25 @@
             this.quantumBtn.TabStop = true;
             this.quantumBtn.Text = "Quantum";
             this.quantumBtn.UseVisualStyleBackColor = true;
-            this.quantumBtn.TextChanged += new System.EventHandler(this.quantumBtn_TextChanged);
+            this.quantumBtn.CheckedChanged += new System.EventHandler(this.quantumBtn_CheckedChanged);
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Red;
             this.groupBox1.Controls.Add(this.quantityBtn);
             this.groupBox1.Controls.Add(this.quantumBtn);
-            this.groupBox1.Location = new System.Drawing.Point(528, 419);
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox1.Location = new System.Drawing.Point(528, 408);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(100, 96);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Choose";
             // 
             // quantityTxb
             // 
-            this.quantityTxb.Location = new System.Drawing.Point(680, 438);
+            this.quantityTxb.Location = new System.Drawing.Point(680, 424);
             this.quantityTxb.Mask = "00000";
             this.quantityTxb.Name = "quantityTxb";
             this.quantityTxb.Size = new System.Drawing.Size(100, 20);
@@ -150,7 +155,7 @@
             // 
             // quantumTxb
             // 
-            this.quantumTxb.Location = new System.Drawing.Point(680, 476);
+            this.quantumTxb.Location = new System.Drawing.Point(680, 469);
             this.quantumTxb.Mask = "00000";
             this.quantumTxb.Name = "quantumTxb";
             this.quantumTxb.Size = new System.Drawing.Size(100, 20);
@@ -164,7 +169,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Papyrus", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Location = new System.Drawing.Point(426, 542);
+            this.label3.Location = new System.Drawing.Point(428, 520);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(150, 39);
             this.label3.TabIndex = 7;
@@ -176,7 +181,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Papyrus", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(698, 542);
+            this.label4.Location = new System.Drawing.Point(699, 520);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(150, 39);
             this.label4.TabIndex = 7;
@@ -188,7 +193,7 @@
             this.oilamountLbl.BackColor = System.Drawing.Color.Transparent;
             this.oilamountLbl.Font = new System.Drawing.Font("Papyrus", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.oilamountLbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.oilamountLbl.Location = new System.Drawing.Point(567, 542);
+            this.oilamountLbl.Location = new System.Drawing.Point(573, 520);
             this.oilamountLbl.Name = "oilamountLbl";
             this.oilamountLbl.Size = new System.Drawing.Size(150, 39);
             this.oilamountLbl.TabIndex = 7;
@@ -201,32 +206,34 @@
             this.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exitBtn.Font = new System.Drawing.Font("Papyrus", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exitBtn.ForeColor = System.Drawing.Color.Red;
-            this.exitBtn.Location = new System.Drawing.Point(771, 592);
+            this.exitBtn.Location = new System.Drawing.Point(807, 562);
             this.exitBtn.Name = "exitBtn";
             this.exitBtn.Size = new System.Drawing.Size(126, 31);
             this.exitBtn.TabIndex = 8;
             this.exitBtn.Text = "EXIT";
             this.exitBtn.UseVisualStyleBackColor = false;
+            this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
             // 
             // OilStation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::WindowsFormsApp2.Properties.Resources.oil;
-            this.ClientSize = new System.Drawing.Size(945, 635);
+            this.ClientSize = new System.Drawing.Size(945, 602);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.oilamountLbl);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.quantumTxb);
             this.Controls.Add(this.quantityTxb);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.priceLblBox);
             this.Controls.Add(this.priceLbl);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.oilcomboBox);
             this.Controls.Add(this.label1);
             this.Name = "OilStation";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OilStation";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

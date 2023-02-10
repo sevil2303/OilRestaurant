@@ -11,11 +11,12 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp2
 {
+
     public partial class OilStation : Form
     {
-
-        Exit exit = new Exit();
-        Restaurant rest = new Restaurant();
+        FileHelper fileHelper = new FileHelper();
+        decimal oilprice = 0;
+        public double total = 0.0;
         public OilStation()
         {
             InitializeComponent();
@@ -49,33 +50,6 @@ namespace WindowsFormsApp2
             oilcomboBox.Items.AddRange(oils.ToArray());
             oilcomboBox.SelectedIndex = 0;
         }
-        public void Test()
-        {
-            if (exit.totalamountLbl.Text == "")
-            {
-                rest.total = 0;
-            }
-            else
-            {
-                rest.total = double.Parse(exit.totalamountLbl.Text);
-            }
-            if (rest.foodamountLbl.Text == "")
-            {
-                rest.food = 0;
-            }
-            else
-            {
-                rest.food = double.Parse(rest.foodamountLbl.Text);
-            }
-            if (oilamountLbl.Text == "")
-            {
-                rest.oil = 0;
-            }
-            else
-            {
-                rest.oil = double.Parse(oilamountLbl.Text);
-            }
-        }
 
         private void oilcomboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -84,7 +58,7 @@ namespace WindowsFormsApp2
         public bool Quantity { get; set; } = false;
         public bool Quantum { get; set; } = false;
 
-        private void quantityBtn_TextChanged(object sender, EventArgs e)
+        private void quantityBtn_CheckedChanged(object sender, EventArgs e)
         {
             if (!Quantity)
             {
@@ -96,8 +70,7 @@ namespace WindowsFormsApp2
             }
             Quantity = !Quantity;
         }
-
-        private void quantumBtn_TextChanged(object sender, EventArgs e)
+        private void quantumBtn_CheckedChanged(object sender, EventArgs e)
         {
             if (!Quantum)
             {
@@ -128,9 +101,6 @@ namespace WindowsFormsApp2
                     amount = quantity;
                 }
                 oilamountLbl.Text = amount.ToString();
-                Test();
-                rest.total = rest.food + rest.oil;
-                exit.totalamountLbl.Text = rest.total.ToString();
             }
             catch
             {
@@ -149,15 +119,55 @@ namespace WindowsFormsApp2
                 }
                 else
                 {
-                    quantum = double.Parse(quantumTxb.Text) * double.Parse(priceLblBox.Text);
+                    quantum = double.Parse(quantumTxb.Text);
+                    quantityTxb.Text = (double.Parse(quantumTxb.Text) / double.Parse(priceLblBox.Text)).ToString();
                     amount = quantum;
                 }
                 oilamountLbl.Text = amount.ToString();
-                Test();
-                rest.total = rest.food + rest.oil;
-                exit.totalamountLbl.Text = rest.total.ToString();
             }
             catch { }
         }
+        private void oilcomboBox_TextUpdate(object sender, EventArgs e)
+        {
+            quantityTxb_TextChanged(sender, e);
+            quantumTxb_TextChanged(sender, e);
+        }
+
+        private void oilcomboBox_TextChanged(object sender, EventArgs e)
+        {
+            priceLblBox.Text = oilcomboBox.SelectedItem.ToString();
+            if (quantityTxb.Enabled)
+            {
+                quantityTxb_TextChanged(oilcomboBox, e);
+            }
+            else
+            {
+                quantumTxb_TextChanged(oilcomboBox, e);
+            }
+        }
+
+
+        private void exitBtn_Click(object sender, EventArgs e)
+        {
+            Exit exit = new Exit();
+            Restaurant rest = new Restaurant();
+            if (oilamountLbl.Text == "")
+            {
+                oilprice = 0;
+            }
+            else
+            {
+                oilprice = decimal.Parse(oilamountLbl.Text);
+            }
+            this.Dispose();
+            var mytotal = fileHelper.Read("foodtotal.json");
+            mytotal += oilprice;
+            exit.totalamountLbl.Text=mytotal.ToString();    
+            fileHelper.Write(mytotal);
+            this.Hide();
+            exit.ShowDialog();
+            this.Close();
+        }
     }
+
 }

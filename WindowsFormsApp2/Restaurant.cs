@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -11,45 +13,56 @@ using System.Windows.Forms;
 
 
 namespace WindowsFormsApp2
-{    
+{
     public partial class Restaurant : Form
     {
-       // OilStation oilStation = new OilStation();
+        FileHelper fileHelper = new FileHelper();
+        InvoiceClass invoiceClass = new InvoiceClass();
         public Restaurant()
-        {       
+        {
             InitializeComponent();
             this.BackColor = Color.FromArgb(24, 25, 26);
-            //hamburgerpanel.BackColor=Color.FromArgb(24, 25, 26);
             Meals.BackColor = Color.FromArgb(24, 25, 26);
             Juices.BackColor = Color.FromArgb(24, 25, 26);
         }
-        double foodamount = 0.0;
-        double pizza = 0.0;
-        double hamburger = 0.0;
-        double frenchfries = 0.0;
-        double coke = 0.0;
-        double redbull = 0.0;
-        double juice = 0.0;
-        public double total = 0.0;
-        public double food = 0.0;
-        public double oil = 0.0;
+        decimal foodamount = 0;
+        decimal pizza = 0;
+        decimal hamburger = 0;
+        decimal frenchfries = 0;
+        decimal coke = 0;
+        decimal redbull = 0;
+        decimal juice = 0;
+        public decimal total = 0;
 
         private void hamburgerquantityTxb_TextChanged(object sender, EventArgs e)
         {
             if (hamburgerquantityTxb.Text == "")
             {
                 foodamount -= hamburger;
+                if (foodamount < 0)
+                {
+                    foodamount = 0;
+                }
                 hamburger = 0;
-                foodamountLbl.Text = foodamount.ToString();
             }
             else
             {
-                hamburger = double.Parse(hamburgerpriceLbl.Text) * (double.Parse(hamburgerquantityTxb.Text));
-                foodamount = hamburger;
-                foodamountLbl.Text = foodamount.ToString();
+                hamburger = decimal.Parse(hamburgerpriceLbl.Text) * (int.Parse(hamburgerquantityTxb.Text));
+                foodamount = hamburger + pizza + frenchfries + redbull + coke + juice;
             }
-            //total = double.Parse(foodamountLbl.Text) + double.Parse(oilStation.oilamountLbl.Text);
-            //totalamountLbl.Text = total.ToString();
+            foodamountLbl.Text = foodamount.ToString();
+            invoiceClass.Name = "Hamburger";
+            invoiceClass.Price = decimal.Parse(hamburgerpriceLbl.Text);
+            if (hamburgerquantityTxb.Text != "")
+            {
+                invoiceClass.Quantity = int.Parse(hamburgerquantityTxb.Text);
+                invoiceClass.Total = decimal.Parse(hamburgerpriceLbl.Text) * (int.Parse(hamburgerquantityTxb.Text));
+            }
+            else
+            {
+                invoiceClass.Quantity = 0;
+                invoiceClass.Total = 0;
+            }
         }
 
         private void pizzaquantityTxb_TextChanged(object sender, EventArgs e)
@@ -57,17 +70,30 @@ namespace WindowsFormsApp2
             if (pizzaquantityTxb.Text == "")
             {
                 foodamount -= pizza;
+                if (foodamount < 0)
+                {
+                    foodamount = 0;
+                }
                 pizza = 0;
-                foodamountLbl.Text = foodamount.ToString();
             }
             else
             {
-                pizza = double.Parse(pizzapriceLbl.Text) * (double.Parse(pizzaquantityTxb.Text));
-                foodamount = hamburger+pizza;
-                foodamountLbl.Text = foodamount.ToString();
+                pizza = decimal.Parse(pizzapriceLbl.Text) * (int.Parse(pizzapriceLbl.Text));
+                foodamount = hamburger + pizza + frenchfries + redbull + coke + juice;
             }
-            //total = double.Parse(foodamountLbl.Text) + double.Parse(oilStation.oilamountLbl.Text);
-            //totalamountLbl.Text = total.ToString();
+            foodamountLbl.Text = foodamount.ToString();
+            invoiceClass.Name = "Pizza";
+            invoiceClass.Price = decimal.Parse(pizzapriceLbl.Text);
+            if (hamburgerquantityTxb.Text != "")
+            {
+                invoiceClass.Quantity = int.Parse(pizzapriceLbl.Text);
+                invoiceClass.Total = decimal.Parse(pizzapriceLbl.Text) * (int.Parse(pizzaquantityTxb.Text));
+            }
+            else
+            {
+                invoiceClass.Quantity = 0;
+                invoiceClass.Total = 0;
+            }
         }
 
         private void frenchfriesquantityTxb_TextChanged(object sender, EventArgs e)
@@ -75,17 +101,31 @@ namespace WindowsFormsApp2
             if (frenchfriesquantityTxb.Text == "")
             {
                 foodamount -= frenchfries;
+                if (foodamount < 0)
+                {
+                    foodamount = 0;
+                }
                 frenchfries = 0;
-                foodamountLbl.Text = foodamount.ToString();
             }
             else
             {
-                frenchfries = double.Parse(frenchfriespriceLbl.Text) * (double.Parse(frenchfriesquantityTxb.Text));
-                foodamount = hamburger+pizza+frenchfries;
-                foodamountLbl.Text = foodamount.ToString();
+                frenchfries = decimal.Parse(frenchfriespriceLbl.Text) * (int.Parse(frenchfriesquantityTxb.Text));
+                foodamount = hamburger + pizza + frenchfries + redbull + coke + juice;
             }
-           // total = double.Parse(foodamountLbl.Text) + double.Parse(oilStation.oilamountLbl.Text);
-            //totalamountLbl.Text = total.ToString();
+            foodamountLbl.Text = foodamount.ToString();
+            foodamountLbl.Text = foodamount.ToString();
+            invoiceClass.Name = "French Fries";
+            invoiceClass.Price = decimal.Parse(frenchfriespriceLbl.Text);
+            if (frenchfriesquantityTxb.Text != "")
+            {
+                invoiceClass.Quantity = int.Parse(frenchfriespriceLbl.Text);
+                invoiceClass.Total = decimal.Parse(frenchfriespriceLbl.Text) * (int.Parse(frenchfriesquantityTxb.Text));
+            }
+            else
+            {
+                invoiceClass.Quantity = 0;
+                invoiceClass.Total = 0;
+            }
         }
 
         private void cokequantityTxb_TextChanged(object sender, EventArgs e)
@@ -93,17 +133,30 @@ namespace WindowsFormsApp2
             if (cokequantityTxb.Text == "")
             {
                 foodamount -= coke;
+                if (foodamount < 0)
+                {
+                    foodamount = 0;
+                }
                 coke = 0;
-                foodamountLbl.Text = foodamount.ToString();
             }
             else
             {
-                coke = double.Parse(cokepriceLbl.Text) * (double.Parse(cokequantityTxb.Text));
-                foodamount = coke;
-                foodamountLbl.Text = foodamount.ToString();
+                coke = decimal.Parse(cokepriceLbl.Text) * (int.Parse(cokequantityTxb.Text));
+                foodamount = hamburger + pizza + frenchfries + redbull + coke + juice;
             }
-           // total = double.Parse(foodamountLbl.Text) + double.Parse(oilStation.oilamountLbl.Text);
-            //totalamountLbl.Text = total.ToString();
+            foodamountLbl.Text = foodamount.ToString();           
+            invoiceClass.Name = "Coke";
+            invoiceClass.Price = decimal.Parse(pizzapriceLbl.Text);
+            if (cokequantityTxb.Text != "")
+            {
+                invoiceClass.Quantity = int.Parse(cokepriceLbl.Text);
+                invoiceClass.Total = decimal.Parse(cokepriceLbl.Text) * (int.Parse(cokequantityTxb.Text));
+            }
+            else
+            {
+                invoiceClass.Quantity = 0;
+                invoiceClass.Total = 0;
+            }
         }
 
         private void redbullquantityTxb_TextChanged(object sender, EventArgs e)
@@ -111,17 +164,30 @@ namespace WindowsFormsApp2
             if (redbullquantityTxb.Text == "")
             {
                 foodamount -= redbull;
+                if (foodamount < 0)
+                {
+                    foodamount = 0;
+                }
                 redbull = 0;
-                foodamountLbl.Text = foodamount.ToString();
             }
             else
             {
-                redbull = double.Parse(redbullpriceLlbl.Text) * (double.Parse(redbullquantityTxb.Text));
-                foodamount = hamburger + pizza + frenchfries + redbull;
-                foodamountLbl.Text = foodamount.ToString();
+                redbull = decimal.Parse(redbullpriceLlbl.Text) * (int.Parse(redbullquantityTxb.Text));
+                foodamount = hamburger + pizza + frenchfries + redbull + coke + juice;
             }
-            //total = double.Parse(foodamountLbl.Text) + double.Parse(oilStation.oilamountLbl.Text);
-            //totalamountLbl.Text = total.ToString();
+            foodamountLbl.Text = foodamount.ToString();
+            invoiceClass.Name = "Red Bull";
+            invoiceClass.Price = decimal.Parse(redbullpriceLlbl.Text);
+            if (redbullquantityTxb.Text != "")
+            {
+                invoiceClass.Quantity = int.Parse(redbullpriceLlbl.Text);
+                invoiceClass.Total = decimal.Parse(redbullpriceLlbl.Text) * (int.Parse(redbullquantityTxb.Text));
+            }
+            else
+            {
+                invoiceClass.Quantity = 0;
+                invoiceClass.Total = 0;
+            }
         }
 
         private void juicequantityTxb_TextChanged(object sender, EventArgs e)
@@ -129,63 +195,50 @@ namespace WindowsFormsApp2
             if (juicequantityTxb.Text == "")
             {
                 foodamount -= juice;
+                if (foodamount < 0)
+                {
+                    foodamount = 0;
+                }
                 juice = 0;
-                foodamountLbl.Text = foodamount.ToString();
             }
             else
             {
-                juice = double.Parse(juicepriceLbl.Text) * (double.Parse(juicequantityTxb.Text));
-                foodamount = hamburger + pizza + frenchfries + redbull + juice;
-                foodamountLbl.Text = foodamount.ToString();
+                juice = decimal.Parse(juicepriceLbl.Text) * (int.Parse(juicequantityTxb.Text));
+                foodamount = hamburger + pizza + frenchfries + redbull + coke + juice;
             }
-            //total = double.Parse(foodamountLbl.Text) + double.Parse(oilStation.oilamountLbl.Text);
-            //totalamountLbl.Text = total.ToString();
+            foodamountLbl.Text = foodamount.ToString();
+            invoiceClass.Name = "Fresh Orange Juice";
+            invoiceClass.Price = decimal.Parse(juicepriceLbl.Text);
+            if (juicequantityTxb.Text != "")
+            {
+                invoiceClass.Quantity = int.Parse(juicepriceLbl.Text);
+                invoiceClass.Total = decimal.Parse(juicepriceLbl.Text) * (int.Parse(juicequantityTxb.Text));
+            }
+            else
+            {
+                invoiceClass.Quantity = 0;
+                invoiceClass.Total = 0;
+            }
         }
-
+        decimal myfood = 0;
         private void oilBtn_Click(object sender, EventArgs e)
         {
-            //this.oilBtn.Dispose();
-            //this.exitBtn.Dispose();
-            //this.label1.Dispose();
-            //this.label2.Dispose();
-            //this.label3.Dispose();
-            //this.label4.Dispose();
-            //this.label5.Dispose();
-            //this.label6.Dispose();
-            //this.label7.Dispose();
-            //this.label8.Dispose();
-            //this.cokepriceLbl.Dispose();
-            //this.foodamountLbl.Dispose();
-            //this.frenchfriespriceLbl.Dispose();
-            //this.hamburgerpriceLbl.Dispose();
-            //this.juicepriceLbl.Dispose();
-            //this.pizzapriceLbl.Dispose();
-            //this.cokequantityTxb.Dispose();
-            //this.frenchfriesquantityTxb.Dispose();
-            //this.hamburgerquantityTxb.Dispose();
-            //this.juicequantityTxb.Dispose();
-            //this.pizzaquantityTxb.Dispose();
-            //this.redbullquantityTxb.Dispose();
-            //this.panel1.Dispose();
-            //this.panel2.Dispose();
-            //this.panel3.Dispose();
-            //this.panel4.Dispose();
-            //this.panel5.Dispose();
-            //this.panel6.Dispose();
-            //this.pictureBox1.Dispose();
-            //this.pictureBox10.Dispose();
-            //this.pictureBox11.Dispose();
-            //this.pictureBox2.Dispose();
-            //this.pictureBox3.Dispose();
-            //this.pictureBox4.Dispose();
-            //this.pictureBox5.Dispose();
-            //this.pictureBox6.Dispose();
+            if (foodamountLbl.Text == "")
+            {
+                myfood = 0;
+            }
+            else
+            {
+                myfood = decimal.Parse(foodamountLbl.Text);
+            }
+            total = myfood;
+            fileHelper.Write(myfood);
             this.Dispose();
             OilStation oilStation = new OilStation();
-
             this.Hide();
             oilStation.ShowDialog();
             this.Close();
         }
+
     }
 }

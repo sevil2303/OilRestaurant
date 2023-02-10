@@ -49,15 +49,11 @@ namespace WindowsFormsApp2
 
         private void openmenuBtn_Click(object sender, EventArgs e)
         {
-            this.label1.Dispose();
-            this.label2.Dispose();
-            this.panel1.Dispose();
-            this.panel2.Dispose();
-            this.slidePic.Dispose();
-            this.openmenuBtn.Dispose();
+            
             timer.Stop();
             Restaurant rest = new Restaurant();
-           
+            OilStation oilStation = new OilStation();
+            oilStation.oilamountLbl.Text = "";
             this.Hide();
             rest.ShowDialog();
             this.Close();

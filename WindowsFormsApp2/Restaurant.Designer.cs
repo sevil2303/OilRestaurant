@@ -70,7 +70,6 @@
             this.foodamountLbl = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.exitBtn = new System.Windows.Forms.Button();
             this.oilBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -560,20 +559,6 @@
             this.label8.TabIndex = 2;
             this.label8.Text = "Amount : ";
             // 
-            // exitBtn
-            // 
-            this.exitBtn.BackColor = System.Drawing.Color.Transparent;
-            this.exitBtn.FlatAppearance.BorderSize = 0;
-            this.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.exitBtn.Font = new System.Drawing.Font("Papyrus", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exitBtn.ForeColor = System.Drawing.Color.Peru;
-            this.exitBtn.Location = new System.Drawing.Point(746, 532);
-            this.exitBtn.Name = "exitBtn";
-            this.exitBtn.Size = new System.Drawing.Size(126, 31);
-            this.exitBtn.TabIndex = 5;
-            this.exitBtn.Text = "EXIT";
-            this.exitBtn.UseVisualStyleBackColor = false;
-            // 
             // oilBtn
             // 
             this.oilBtn.BackColor = System.Drawing.Color.Transparent;
@@ -581,7 +566,7 @@
             this.oilBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.oilBtn.Font = new System.Drawing.Font("Papyrus", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.oilBtn.ForeColor = System.Drawing.Color.Peru;
-            this.oilBtn.Location = new System.Drawing.Point(539, 532);
+            this.oilBtn.Location = new System.Drawing.Point(684, 528);
             this.oilBtn.Name = "oilBtn";
             this.oilBtn.Size = new System.Drawing.Size(183, 31);
             this.oilBtn.TabIndex = 5;
@@ -595,7 +580,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 561);
             this.Controls.Add(this.oilBtn);
-            this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.mealtabpage);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label3);
@@ -679,7 +663,6 @@
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button exitBtn;
         private System.Windows.Forms.Button oilBtn;
         public System.Windows.Forms.Label foodamountLbl;
     }

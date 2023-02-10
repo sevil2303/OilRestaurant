@@ -16,5 +16,14 @@ namespace WindowsFormsApp2
         {
             InitializeComponent();
         }
+
+        private void invoiceBtn_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            Invoice invoice = new Invoice();
+            this.Hide();
+            invoice.ShowDialog();
+            this.Close();            
+        }
     }
 }
