@@ -117,7 +117,7 @@ namespace WindowsFormsApp2
             else
             {
                 redbull = double.Parse(redbullpriceLlbl.Text) * (double.Parse(redbullquantityTxb.Text));
-                foodamount = redbull;
+                foodamount = hamburger + pizza + frenchfries + redbull;
                 foodamountLbl.Text = foodamount.ToString();
             }
             //total = double.Parse(foodamountLbl.Text) + double.Parse(oilStation.oilamountLbl.Text);
@@ -135,7 +135,7 @@ namespace WindowsFormsApp2
             else
             {
                 juice = double.Parse(juicepriceLbl.Text) * (double.Parse(juicequantityTxb.Text));
-                foodamount = juice;
+                foodamount = hamburger + pizza + frenchfries + redbull + juice;
                 foodamountLbl.Text = foodamount.ToString();
             }
             //total = double.Parse(foodamountLbl.Text) + double.Parse(oilStation.oilamountLbl.Text);
