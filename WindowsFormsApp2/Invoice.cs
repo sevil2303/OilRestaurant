@@ -22,7 +22,7 @@ namespace WindowsFormsApp2
         {
             InitializeComponent();
             var myinvoice = fileHelper.ReadInvoice("invoice.json");
-            int y = 157;
+            int y = 137;
             foreach (var myorder in myinvoice)
             {
                 var uc = new Order();
@@ -30,19 +30,15 @@ namespace WindowsFormsApp2
                 uc.Price = myorder.Price;
                 uc.Quantity = myorder.Quantity;
                 uc.Total = myorder.Total;
-                uc.Location = new Point(0, y);
-                y += 45;
+                uc.Location = new Point(56, y);
+                y += 28;
                 this.Controls.Add(uc);
             }
             var total = fileHelper.Read("foodtotal.json");
-            //Label label = new Label();
-            //label.Location = new Point(500, y);
-            //label.Text = total.ToString();
-            //this.Controls.Add(label);
             var totalUc = new TotalAmount();
             totalUc.Name = "Total";
             totalUc.Total = total;
-            totalUc.Location = new Point(0, y + 100);
+            totalUc.Location = new Point(56, y);
             this.Controls.Add(totalUc);
             foreach (var item in Controls)
             {
@@ -51,15 +47,6 @@ namespace WindowsFormsApp2
 
                 }
             }
-            //for (int i = 0; i < myinvoice.Count; i++)
-            //{
-            //    Label label = new Label();
-            //    label.Location = new Point(10, y);
-            //    label.ForeColor = Color.Black;
-            //    label.Text = myinvoice[i].Name;
-            //    label.Show();
-            //    y += 100;
-            //}
         }
 
         private void button1_Click(object sender, EventArgs e)

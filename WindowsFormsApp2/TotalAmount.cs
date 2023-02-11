@@ -25,6 +25,8 @@ namespace WindowsFormsApp2
         public TotalAmount()
         {
             InitializeComponent();
+            ;
+            //this.TotalAmount.BackColor = Color.FromArgb(25, 40, 65);
         }
     }
 }

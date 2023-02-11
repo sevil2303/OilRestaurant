@@ -37,6 +37,7 @@
             // 
             this.totaltextLbl.AutoSize = true;
             this.totaltextLbl.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.totaltextLbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.totaltextLbl.Location = new System.Drawing.Point(19, 10);
             this.totaltextLbl.Name = "totaltextLbl";
             this.totaltextLbl.Size = new System.Drawing.Size(115, 17);
@@ -47,7 +48,8 @@
             // 
             this.totalamountLbl.AutoSize = true;
             this.totalamountLbl.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.totalamountLbl.Location = new System.Drawing.Point(590, 10);
+            this.totalamountLbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.totalamountLbl.Location = new System.Drawing.Point(499, 10);
             this.totalamountLbl.Name = "totalamountLbl";
             this.totalamountLbl.Size = new System.Drawing.Size(16, 17);
             this.totalamountLbl.TabIndex = 0;
@@ -57,7 +59,8 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(297, 40);
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label2.Location = new System.Drawing.Point(221, 35);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(105, 16);
             this.label2.TabIndex = 1;
@@ -67,12 +70,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightCoral;
+            this.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.totalamountLbl);
             this.Controls.Add(this.totaltextLbl);
             this.Name = "TotalAmount";
-            this.Size = new System.Drawing.Size(674, 56);
+            this.Size = new System.Drawing.Size(554, 53);
             this.ResumeLayout(false);
             this.PerformLayout();
 
