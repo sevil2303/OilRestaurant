@@ -20,8 +20,8 @@ namespace WindowsFormsApp2
         private void invoiceBtn_Click(object sender, EventArgs e)
         {
             this.Dispose();
-            Invoice invoice = new Invoice();
             this.Hide();
+            Invoice invoice = new Invoice();
             invoice.ShowDialog();
             this.Close();            
         }

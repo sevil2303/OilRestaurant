@@ -36,7 +36,7 @@ namespace WindowsFormsApp2
             }
             return total;
         }
-        public void WriteInvoice(string total)
+        public void WriteInvoice(List<InvoiceClass>invoices)
         {
             var serializer = new JsonSerializer();
             using (var sw = new StreamWriter("invoice.json"))
@@ -44,9 +44,23 @@ namespace WindowsFormsApp2
                 using (var jw = new JsonTextWriter(sw))
                 {
                     jw.Formatting = Newtonsoft.Json.Formatting.Indented;
-                    serializer.Serialize(jw, total);
+                    serializer.Serialize(jw, invoices);
                 }
             }
+        }
+        public List<InvoiceClass> ReadInvoice(string filename)
+        {
+            List<InvoiceClass> invoice=null;
+            try
+            {
+                var context = File.ReadAllText(filename);
+                invoice = JsonConvert.DeserializeObject<List<InvoiceClass>>(context);
+            }
+            catch (Exception)
+            {
+
+            }
+            return invoice;
         }
     }
 }

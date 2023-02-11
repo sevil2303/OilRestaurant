@@ -164,6 +164,16 @@ namespace WindowsFormsApp2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Goodbye_PNG {
+            get {
+                object obj = ResourceManager.GetObject("Goodbye-PNG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap How_to_Make_Restaurant_Quality_French_Fries_The_Ch_9560_e3f5830473_1617890127 {
             get {
                 object obj = ResourceManager.GetObject("How-to-Make-Restaurant-Quality-French-Fries-The-Ch-9560-e3f5830473-1617890127", resourceCulture);
@@ -224,6 +234,16 @@ namespace WindowsFormsApp2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap logo_yummy {
+            get {
+                object obj = ResourceManager.GetObject("logo-yummy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap oil {
             get {
                 object obj = ResourceManager.GetObject("oil", resourceCulture);
@@ -277,6 +297,16 @@ namespace WindowsFormsApp2.Properties {
         internal static System.Drawing.Bitmap wood_textures_1920x1080_abstract_textures_hd_art_wallpaper_preview {
             get {
                 object obj = ResourceManager.GetObject("wood-textures-1920x1080-abstract-textures-hd-art-wallpaper-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap YUMMY9_321338837783 {
+            get {
+                object obj = ResourceManager.GetObject("YUMMY9_321338837783", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

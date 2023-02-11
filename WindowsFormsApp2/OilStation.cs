@@ -14,6 +14,7 @@ namespace WindowsFormsApp2
 
     public partial class OilStation : Form
     {
+        InvoiceClass invoiceClass = new InvoiceClass();
         FileHelper fileHelper = new FileHelper();
         decimal oilprice = 0;
         public double total = 0.0;
@@ -82,9 +83,9 @@ namespace WindowsFormsApp2
             }
             Quantum = !Quantum;
         }
-        double amount = 0.0;
-        double quantity = 0.0;
-        double quantum = 0.0;
+        decimal amount = 0;
+        decimal quantity = 0;
+        decimal quantum = 0;
 
         private void quantityTxb_TextChanged(object sender, EventArgs e)
         {
@@ -97,9 +98,10 @@ namespace WindowsFormsApp2
                 }
                 else
                 {
-                    quantity = double.Parse(quantityTxb.Text) * double.Parse(priceLblBox.Text);
+                    quantity = decimal.Parse(quantityTxb.Text) * decimal.Parse(priceLblBox.Text);
                     amount = quantity;
                 }
+                invoiceClass.Quantity = quantity;
                 oilamountLbl.Text = amount.ToString();
             }
             catch
@@ -119,7 +121,7 @@ namespace WindowsFormsApp2
                 }
                 else
                 {
-                    quantum = double.Parse(quantumTxb.Text);
+                    quantum = decimal.Parse(quantumTxb.Text);
                     quantityTxb.Text = (double.Parse(quantumTxb.Text) / double.Parse(priceLblBox.Text)).ToString();
                     amount = quantum;
                 }
@@ -149,8 +151,8 @@ namespace WindowsFormsApp2
 
         private void exitBtn_Click(object sender, EventArgs e)
         {
-            Exit exit = new Exit();
-            Restaurant rest = new Restaurant();
+            
+            //Restaurant rest = new Restaurant();
             if (oilamountLbl.Text == "")
             {
                 oilprice = 0;
@@ -159,14 +161,29 @@ namespace WindowsFormsApp2
             {
                 oilprice = decimal.Parse(oilamountLbl.Text);
             }
-            this.Dispose();
+            
+            if (oilprice != 0) {
+                var mylist = fileHelper.ReadInvoice("invoice.json");
+                mylist.Add(new InvoiceClass
+                {
+                    Name = oilcomboBox.Text,
+                    Price = decimal.Parse(priceLblBox.Text),
+                    Quantity = decimal.Parse(quantityTxb.Text),
+                    Total = decimal.Parse(oilamountLbl.Text)
+                });
+                fileHelper.WriteInvoice(mylist);
+            }
+            
             var mytotal = fileHelper.Read("foodtotal.json");
             mytotal += oilprice;
-            exit.totalamountLbl.Text=mytotal.ToString();    
+            Exit exit = new Exit();
+            this.Dispose();
+            exit.totalamountLbl.Text = mytotal.ToString();
             fileHelper.Write(mytotal);
-            this.Hide();
-            exit.ShowDialog();
             this.Close();
+            exit.Enabled = true;
+            exit.ShowDialog();
+
         }
     }
 
