@@ -19,26 +19,9 @@ namespace WindowsFormsApp2
             this.BackColor = Color.FromArgb(24, 25, 26);
             //panel1.BackColor = Color.FromArgb(207, 181, 59);
             //panel2.BackColor = Color.FromArgb(207, 181, 59);
-            timer.Interval = 1500;
-            timer.Tick += Timer_Tick;
-            timer.Start();
+           
         }
 
-
-        private int imageNumber=1;
-        private void LoadNextImage()
-        {
-            if (imageNumber == 5)
-            {
-                imageNumber = 1;
-            }
-            slidePic.ImageLocation = String.Format(@"images\{0}.jpg",imageNumber);
-            imageNumber++;
-        }
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            LoadNextImage();
-        }
 
         private void openmenuBtn_MouseEnter(object sender, EventArgs e)
         {

@@ -40,13 +40,7 @@ namespace WindowsFormsApp2
             totalUc.Total = total;
             totalUc.Location = new Point(56, y);
             this.Controls.Add(totalUc);
-            foreach (var item in Controls)
-            {
-                if(item is UserControl)
-                {
-
-                }
-            }
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -61,5 +55,6 @@ namespace WindowsFormsApp2
             }
             Application.Exit();
         }
+
     }
 }
