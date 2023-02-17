@@ -62,8 +62,6 @@ namespace WindowsFormsApp2
                 hamburgertotal = 0;
                 invoiceClass.Total = 0;
             }           
-            //invoiceClass.Name = "Hamburger";
-            //invoiceClass.Price = decimal.Parse(hamburgerpriceLbl.Text);
         }
         int pizzatotal = 0;
         private void pizzaquantityTxb_TextChanged(object sender, EventArgs e)
